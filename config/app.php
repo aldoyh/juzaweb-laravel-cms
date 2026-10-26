@@ -54,6 +54,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Public welcome bypass for local/dev and explicit opt-in
+    |--------------------------------------------------------------------------
+    |
+    | When enabled, the app will allow guests to access the public welcome/admin
+    | entry points while running on a local development server or when explicitly
+    | opted in from the environment. This defaults to false for safety.
+    |
+    */
+
+    'allow_public_welcome' => filter_var(env('APP_ALLOW_PUBLIC_WELCOME', false), FILTER_VALIDATE_BOOLEAN),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |

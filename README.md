@@ -105,6 +105,30 @@ neon deploy
 php artisan neon:healthcheck
 ```
 
+## Developer utilities
+
+### Sync `.env.example` into sibling `.env` files
+
+Use this when you want to refresh the app defaults without overwriting sensitive local secrets.
+
+```bash
+php artisan env:sync
+php artisan env:sync --dry-run
+php artisan env:sync --files=.env,.env.local --force
+php artisan env:sync --only=APP_NAME,APP_ENV,APP_DEBUG --skip=APP_KEY
+```
+
+The command reads `.env.example`, merges safe defaults into every sibling `.env` file it can find, skips existing protected values by default, and only updates placeholder or empty values unless `--force` is passed.
+
+### Set the auth background to Bing's image of the day
+
+```bash
+php artisan app:use-bing-daily-image
+php artisan app:use-bing-daily-image --save-to=juzaweb/images/auth-bg.jpg
+```
+
+This downloads the daily Bing image and saves it into the public asset path used by the Laravel auth layout. It is designed to replace the default login-screen background with a fresh image without changing the layout code.
+
 ## Contributing
 
 - Contributions are welcome, and are accepted via pull requests. Please review these guidelines before submitting any pull requests.

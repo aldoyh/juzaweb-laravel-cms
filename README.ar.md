@@ -91,6 +91,30 @@ composer create-project --prefer-dist juzaweb/cms blog
 php artisan juzaweb:install
 ```
 
+## أدوات المطور (Developer utilities)
+
+### مزامنة `.env.example` مع ملفات `.env` الشقيقة
+
+استخدم هذا الأمر عند رغبتك في تحديث القيم الافتراضية للتطبيق دون الكتابة فوق الأسرار المحلية الحساسة.
+
+```bash
+php artisan env:sync
+php artisan env:sync --dry-run
+php artisan env:sync --files=.env,.env.local --force
+php artisan env:sync --only=APP_NAME,APP_ENV,APP_DEBUG --skip=APP_KEY
+```
+
+يقرأ الأمر ملف `.env.example` ويُدرج القيم الآمنة في كل ملف `.env` مجاور موجود، ويُتجاهل القيم المحمية الحالية افتراضيًا، ويحدّث فقط القيم الفارغة أو placeholders ما لم تُمرّر `--force`.
+
+### تعيين صورة خلفية تسجيل الدخول من صورة Bing اليومية
+
+```bash
+php artisan app:use-bing-daily-image
+php artisan app:use-bing-daily-image --save-to=juzaweb/images/auth-bg.jpg
+```
+
+هذا الأمر يقوم بتنزيل صورة Bing اليومية وحفظها في مسار الأصول العام المستخدم في تخطيط شاشة تسجيل الدخول. وهو مصمم لاستبدال الخلفية الافتراضية دون تعديل تصميم الواجهة نفسه.
+
 ## المساهمة (Contributing)
 
 - مرحب بالمساهمات، ويتم قبولها عبر طلبات السحب (pull requests). يرجى مراجعة[6D[K

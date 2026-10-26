@@ -22,7 +22,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->ensureSqliteDatabaseExists();
         $this->fallbackToSqliteWhenPostgresUnavailable();
+    }
+
+    private function ensureSqliteDatabaseExists(): void
+    {
+        $sqliteDatabase = config('database.connections.sqlite.database', database_path('database.sqlite'));
+
+        if (empty($sqliteDatabase) || ! is_string($sqliteDatabase)) {
+            return;
+        }
+
+        if (file_exists($sqliteDatabase)) {
+            return;
+        }
+
+        $directory = dirname($sqliteDatabase);
+        if (! is_dir($directory) && ! mkdir($directory, 0775, true) && ! is_dir($directory)) {
+            throw new \RuntimeException("Unable to create SQLite directory at {$directory}");
+        }
+
+        if (touch($sqliteDatabase) === false) {
+            throw new \RuntimeException("Unable to create SQLite database at {$sqliteDatabase}");
+        }
     }
 
     private function fallbackToSqliteWhenPostgresUnavailable(): void
@@ -38,25 +61,14 @@ class AppServiceProvider extends ServiceProvider
         try {
             DB::connection('pgsql')->getPdo();
         } catch (Throwable $e) {
-            $sqliteDatabase = config('database.connections.sqlite.database', database_path('database.sqlite'));
-
-            if (! file_exists($sqliteDatabase)) {
-                $directory = dirname($sqliteDatabase);
-                if (! is_dir($directory)) {
-                    mkdir($directory, 0775, true);
-                }
-
-                if (touch($sqliteDatabase) === false) {
-                    throw new \RuntimeException("Unable to create SQLite database at {$sqliteDatabase}");
-                }
-            }
+            $this->ensureSqliteDatabaseExists();
 
             DB::purge('pgsql');
             config(['database.default' => 'sqlite']);
             DB::setDefaultConnection('sqlite');
 
             Log::warning('Neon Postgres connection failed. Falling back to SQLite.', [
-                'sqlite_database' => $sqliteDatabase,
+                'sqlite_database' => config('database.connections.sqlite.database', database_path('database.sqlite')),
                 'error' => $e->getMessage(),
             ]);
         }

@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'meta_description' => 'A modern Laravel CMS for content, teams, and digital growth.',
+    'page_title' => 'Juzaweb CMS — Welcome',
+    'skip_link' => 'Skip to the main call to action',
+    'title_line_1' => 'Launch',
+    'title_line_2' => 'your next project',
+    'lead_intro' => 'Build with a flexible CMS that helps teams manage content, launch pages, and scale with confidence.',
+    'cta' => 'Get started',
+    'email_label' => 'Email address',
+    'email_placeholder' => 'Enter your email to talk with us',
+    'error' => 'Please enter a valid email address.',
+    'success' => 'Thanks — we\'ll be in touch soon.',
+    'proof_title' => 'Why teams choose Juzaweb',
+    'proof_1' => 'Modern content workflows',
+    'proof_2' => 'Admin tools that stay simple',
+    'proof_3' => 'Built for growth',
+    'footer_blurb' => 'From editorial content to custom experiences, Juzaweb gives your team the structure to grow without losing flexibility.',
+    'contact_us' => 'Contact us',
+    'address_1' => 'Juzaweb CMS',
+    'address_2' => 'Built for modern teams',
+    'address_3' => 'Global-ready and developer-friendly',
+    'copyright' => 'Copyright © Juzaweb. All rights reserved.',
+    'email_us' => 'Email us:',
+    'switch_language' => 'Switch language',
+    'theme_toggle' => 'Toggle theme',
+];
