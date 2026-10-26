@@ -79,6 +79,16 @@ Config database in your `.env` file, and run:
 php artisan juzaweb:install
 ```
 
+### Public welcome page and local dev access
+
+To allow guests to view the public welcome page without signing in on local development or an explicitly enabled environment, set:
+
+```bash
+APP_ALLOW_PUBLIC_WELCOME=true
+```
+
+This is useful for a local preview, a public marketing page, or a safe opt-in before the full app is protected.
+
 ### Neon setup (Postgres + Object Storage + Functions + Realtime)
 
 This project can run on Neon-managed services.

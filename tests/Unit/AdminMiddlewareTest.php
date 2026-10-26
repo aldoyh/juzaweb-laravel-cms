@@ -15,7 +15,7 @@ class AdminMiddlewareTest extends TestCase
         $request = Request::create('/admin', 'GET');
         $request->setUserResolver(fn () => null);
 
-        $response = (new Admin())->handle($request, function ($request) {
+        $response = (new Admin)->handle($request, function ($request) {
             return response('ok');
         });
 
