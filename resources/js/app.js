@@ -1,0 +1,2 @@
+// Vite entrypoint script
+

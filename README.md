@@ -1,7 +1,9 @@
-Juzaweb CMS - Laravel CMS for Your Project
-=====================================
+# Juzaweb CMS - Laravel CMS for Your Project
+
+> A powerful and flexible Content Management System built on Laravel.
 
 ## About
+
 ![https://buymeacoffee.com/juzaweb](https://raw.githubusercontent.com/juzaweb/core/refs/heads/master/assets/public/images/thumbnail.png)
 [![Total Downloads](https://img.shields.io/packagist/dt/juzaweb/cms.svg?style=social)](https://packagist.org/packages/juzaweb/cms)
 [![GitHub Repo stars](https://img.shields.io/github/stars/juzaweb/cms?style=social)](https://github.com/juzaweb/cms)
@@ -53,18 +55,22 @@ The documentation lives in the [`docs/`](docs) directory:
 
 Find yourself stuck using the CMS? Found a bug? Do you have general questions or suggestions for improving the CMS? Feel free to [create an issue on GitHub](https://github.com/juzaweb/cms/issues), we'll try to address it as soon as possible.
 
-Video Tutorial: https://www.youtube.com/@juzaweb/videos
+Video Tutorial: <https://www.youtube.com/@juzaweb/videos>
 
 ## Requirements
+
 - The modules package requires:
-    - PHP 8.2 or higher
-    - MySql 8.0 or higher
+  - PHP 8.2 or higher
+  - MySql 8.0 or higher
 
 ## Install
+
 ### Create project with composer
+
 ```
 composer create-project --prefer-dist juzaweb/cms blog
 ```
+
 ### Install
 
 Config database in your `.env` file, and run:
@@ -73,11 +79,39 @@ Config database in your `.env` file, and run:
 php artisan juzaweb:install
 ```
 
+### Neon setup (Postgres + Object Storage + Functions + Realtime)
+
+This project can run on Neon-managed services.
+
+1. Initialize and deploy Neon from the repository root:
+
+```bash
+neon init -y --org-id org-little-glade-71075140 --project-id crimson-tooth-90534286 --branch production --services postgres,ai-gateway,object-storage,functions,realtime
+neon deploy
+```
+
+2. Ensure `.env` (or `.env.local`) contains Neon variables such as:
+   - `DATABASE_URL`
+   - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ENDPOINT_URL_S3`, `AWS_REGION`, `AWS_BUCKET`
+   - `NEON_FUNCTION_HELLO_BASE_URL`
+   - `NEON_REALTIME_URL`, `NEON_REALTIME_SECRET`
+   - `DB_CONNECTION=pgsql`
+   - `DB_SQLITE_DATABASE=database/database.sqlite`
+   - `DB_FALLBACK_TO_SQLITE=true` (fallback to SQLite when Neon is temporarily unavailable)
+
+3. Verify service wiring end-to-end:
+
+```bash
+php artisan neon:healthcheck
+```
+
 ## Contributing
+
 - Contributions are welcome, and are accepted via pull requests. Please review these guidelines before submitting any pull requests.
 [https://github.com/juzaweb/cms/blob/master/CONTRIBUTING.md](https://github.com/juzaweb/cms/blob/master/CONTRIBUTING.md)
 
 ## Features
+
 - [x] File manager
 - [x] Plugins
 - [x] Themes
@@ -108,10 +142,12 @@ php artisan juzaweb:install
 - [ ] **Api Support**
 
 ## Backend Javascript libraries
+
 - Jquery
 - Bootstrap 4
 - select2
 - font-awesome
 
-## Buy me coffee
+## Buy the Original Author a coffee
+
 [![Juzaweb Buy me coffee](https://i.imgur.com/MAqboRu.png)](https://buymeacoffee.com/juzaweb)

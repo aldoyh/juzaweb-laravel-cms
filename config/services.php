@@ -39,4 +39,19 @@ return [
         'key' => env('JUZAWEB_API_KEY'),
     ],
 
+    'neon' => [
+        'project_branch' => env('NEON_BRANCH'),
+        'ai_gateway' => [
+            'url' => env('NEON_AI_GATEWAY_URL'),
+            'token' => env('NEON_AI_GATEWAY_TOKEN'),
+        ],
+        'functions' => [
+            'hello_base_url' => env('NEON_FUNCTION_HELLO_BASE_URL'),
+        ],
+        'realtime' => [
+            'url' => env('NEON_REALTIME_URL'),
+            'secret' => env('NEON_REALTIME_SECRET'),
+        ],
+    ],
+
 ];
